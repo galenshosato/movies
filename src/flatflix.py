@@ -1,52 +1,67 @@
 class Movie:
     def __init__(self, title):
-        pass
+        self.title = title
+        self.reviews = []
 
     def get_title(self):
-        pass
+        return self.title
 
     def get_reviews(self):
-        pass
+        return self.reviews
 
     def get_viewers(self):
-        pass
+        movies = []
+        for movie in self.reviews:
+            movies.append(movie.viewer)
+        return movies
+            
 
     def average_rating(self):
-        pass
+        return sum([review.rating for review in self.reviews])
 
-    def highest_rating(self):
-        pass
+    def highest_review(self):
+        highest_review = self.reviews[0]
+        for review in self.reviews:
+            if review.rating > highest_review.rating:
+                highest_review = review
+        return highest_review
 
 
 class Viewer:
     def __init__(self, username):
-        pass
+        self.username = username
+        self.reviews = []
 
     def get_username(self):
-        pass
+        return self.username
 
     def get_reviews(self):
-        pass
+        return self.reviews
 
     def get_movies(self):
-        pass
+        return [viewer.movie for viewer in self.reviews]
 
     def has_reviewed(self, movie):
-        pass
+        for review in self.reviews:
+            if review.movie == movie:
+                return True  
 
     def rate_movie(self, movie, rating):
-        pass
+        review = Review(self, movie, rating)
+        self.reviews.append(review)
 
 
 class Review:
     def __init__(self, viewer, movie, rating):
-        pass
+        self.viewer = viewer
+        self.movie = movie
+        self.rating = rating
 
     def get_rating(self):
-        pass
+        return self.rating 
 
     def get_viewer(self):
-        pass
+        return self.viewer
 
     def get_movie(self):
-        pass
+        return self.movie
